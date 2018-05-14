@@ -104,6 +104,19 @@ public class UserDAO {
         closeDB();
     }
 
+    public void updateUser(User u) {
+        openDB();
+        ContentValues cv = new ContentValues();
+        cv.put(NAME, u.getName());
+        cv.put(ADDRESS, u.getAddress());
+        cv.put(EMAIL, u.getEmail());
+        cv.put(PASSWORD, u.getPassword());
+        cv.put(PHONE, u.getPhone());
+        cv.put(UPDATED_AT, u.getUpdatedAt());
+        db.update(USER_TABLE, cv, USER_ID+"="+u.getId(), null);
+        closeDB();
+    }
+
     public ArrayList<User> findAllUsers() {
         userList = new ArrayList();
 

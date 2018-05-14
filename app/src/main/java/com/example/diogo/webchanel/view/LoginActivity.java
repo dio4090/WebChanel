@@ -16,6 +16,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     EditText edtLogin, edtPassword;
     Button btnLogin;
     TextView txtNewUser;
+    TextView txtNewEnterprise;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +31,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         edtPassword = (EditText) findViewById(R.id.edt_password);
         btnLogin = (Button) findViewById(R.id.btn_login);
         txtNewUser = (TextView) findViewById(R.id.txt_new_user);
+        txtNewEnterprise = (TextView) findViewById(R.id.txt_new_enterprise);
 
         btnLogin.setOnClickListener(this);
         txtNewUser.setOnClickListener(this);
+        txtNewEnterprise.setOnClickListener(this);
     }
 
     private void validateLogin(String login, String pass) {
@@ -47,6 +50,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             case R.id.txt_new_user:
                 startActivity(new Intent(LoginActivity.this, NewUserActivity.class));
+
+            case R.id.txt_new_enterprise:
+                startActivity(new Intent(LoginActivity.this, NewEnterpriseActivity.class));
         }
     }
 }

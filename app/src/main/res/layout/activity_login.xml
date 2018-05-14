@@ -60,4 +60,14 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/txt_new_user" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Seja um associado!"
+        android:textSize="18sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/txt_new_enterprise" />
+
 </RelativeLayout >
