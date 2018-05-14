@@ -33,7 +33,7 @@ public class EnterpriseDAO {
     private SQLiteDatabase db;
 
     private static final String DATABASE_NAME = "webchanel.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String ENTERPRISE_TABLE = "enterprises";
 
     private static final String CREATE_ENTERPRISE_TABLE =
