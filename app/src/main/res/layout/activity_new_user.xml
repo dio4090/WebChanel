@@ -32,7 +32,19 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/edtNewName" />
+            android:id="@+id/edt_new_user_name"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Endereço"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edt_new_user_address" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -45,7 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="phone"
-            android:id="@+id/edtNewPhone" />
+            android:id="@+id/edt_new_user_phone" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -57,7 +69,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/edtNewEmail" />
+            android:id="@+id/edt_new_user_email" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -70,14 +82,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:id="@+id/edtNewPassword" />
+            android:id="@+id/edt_new_user_password" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Cadastrar"
             android:layout_marginTop="50dp"
-            android:id="@+id/btnAddUser" />
+            android:layout_marginBottom="20dp"
+            android:id="@+id/btn_add_user" />
 
 
     </TableLayout>

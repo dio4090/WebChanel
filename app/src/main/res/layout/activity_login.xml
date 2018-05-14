@@ -7,7 +7,7 @@
     android:layout_marginRight="15sp"
     android:layout_marginTop="15sp"
     android:layout_marginBottom="15sp"
-    tools:context=".LoginActivity">
+    tools:context=".view.LoginActivity">
 
     <TextView
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
-        android:id="@+id/edtLogin" />
+        android:id="@+id/edt_login" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -41,14 +41,14 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:layout_marginTop="250dp"
-        android:id="@+id/edtPassword" />
+        android:id="@+id/edt_password" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Entrar"
         android:layout_marginTop="380dp"
-        android:id="@+id/btnLogin" />
+        android:id="@+id/btn_login" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -58,6 +58,6 @@
         android:textColor="@color/colorPrimaryDark"
         android:layout_marginTop="460dp"
         android:layout_centerHorizontal="true"
-        android:id="@+id/txtNewUser" />
+        android:id="@+id/txt_new_user" />
 
 </RelativeLayout >
