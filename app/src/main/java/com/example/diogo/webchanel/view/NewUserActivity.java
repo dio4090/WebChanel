@@ -1,6 +1,9 @@
 package com.example.diogo.webchanel.view;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,12 +14,14 @@ import android.widget.Toast;
 import com.example.diogo.webchanel.R;
 import com.example.diogo.webchanel.dao.UserDAO;
 import com.example.diogo.webchanel.model.User;
+import com.example.diogo.webchanel.util.AndroidUtil;
 
 public class NewUserActivity extends AppCompatActivity implements View.OnClickListener {
 
     //GLOBAL VARIABLES
     User user;
     UserDAO userDAO;
+    AndroidUtil util;
 
     EditText edtNewUserName;
     EditText edtNewUserAddess;
@@ -64,11 +69,21 @@ public class NewUserActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
+    private void showUsers(){
+        user = new User();
+        user = userDAO.findUserById(1);
+        System.out.println("ENPRESA CADASTRADA:");
+        System.out.println("ID:"+user.getId());
+        System.out.println("NOME:"+user.getName());
+        System.out.println("EMAIL:"+user.getEmail());
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_add_user:
                 createUser();
+                showUsers();
                 startActivity(new Intent(NewUserActivity.this, LoginActivity.class));
 
         }
