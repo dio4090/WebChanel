@@ -1,6 +1,5 @@
 package com.example.diogo.webchanel.view;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -14,10 +13,13 @@ import com.example.diogo.webchanel.R;
 import com.example.diogo.webchanel.dao.EnterpriseDAO;
 import com.example.diogo.webchanel.model.Enterprise;
 
+import java.util.ArrayList;
+
 public class NewEnterpriseActivity extends AppCompatActivity implements View.OnClickListener {
 
     //GLOBAL VARIABLES
     Enterprise enterprise;
+    ArrayList<Enterprise> enterpriseList;
     EnterpriseDAO enterpriseDAO;
 
     EditText edtNewEnterpriseName;
@@ -84,11 +86,14 @@ public class NewEnterpriseActivity extends AppCompatActivity implements View.OnC
 
     private void showEnterprises(){
         enterprise = new Enterprise();
-        enterprise = enterpriseDAO.findEnterpriseById(1);
-        System.out.println("ENPRESA CADASTRADA:");
-        System.out.println("ID:"+enterprise.getId());
-        System.out.println("NOME:"+enterprise.getName());
-        System.out.println("CNPJ:"+enterprise.getCnpj());
+        enterpriseList = enterpriseDAO.findAllEnterprises();
+
+        for(Enterprise e : enterpriseList) {
+            System.out.println("ENPRESA CADASTRADA:");
+            System.out.println("ID:"+e.getId());
+            System.out.println("NOME:"+e.getName());
+            System.out.println("CNPJ:"+e.getCnpj());
+        }
     }
 
     @Override
