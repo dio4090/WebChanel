@@ -31,9 +31,6 @@ public class EnterpriseDAO {
     private final Context Context;
     private DatabaseHelper dbHelper;
     private SQLiteDatabase db;
-
-    private static final String DATABASE_NAME = "webchanel.db";
-    private static final int DATABASE_VERSION = 2;
     private static final String ENTERPRISE_TABLE = "enterprises";
 
     private static final String CREATE_ENTERPRISE_TABLE =
@@ -50,24 +47,6 @@ public class EnterpriseDAO {
                     + TYPE + " TEXT,"
                     + UPDATED_AT + " DATETIME );";
 
-    //DATABASE HELPER
-    private static class DatabaseHelper extends SQLiteOpenHelper {
-
-        DatabaseHelper(Context context) {
-            super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        }
-
-        @Override
-        public void onCreate(SQLiteDatabase db) {
-            db.execSQL(CREATE_ENTERPRISE_TABLE);
-        }
-
-        @Override
-        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            db.execSQL("DROP TABLE IF EXISTS " + ENTERPRISE_TABLE);
-            onCreate(db);
-        }
-    }
 
     public void Reset() {
         dbHelper.onUpgrade(this.db, 1, 1);
@@ -75,7 +54,7 @@ public class EnterpriseDAO {
 
     public EnterpriseDAO(Context ctx) {
         Context = ctx;
-        dbHelper = new DatabaseHelper(Context);
+        dbHelper = new DatabaseHelper(Context, CREATE_ENTERPRISE_TABLE, ENTERPRISE_TABLE);
     }
 
     public EnterpriseDAO openDB() throws SQLException {
