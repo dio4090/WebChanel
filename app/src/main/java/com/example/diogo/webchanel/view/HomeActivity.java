@@ -60,7 +60,6 @@ public class HomeActivity extends AppCompatActivity
         ArrayAdapter adapter = new EnterpriseAdapter(this, enterprises);
         lista.setAdapter(adapter);
 
-
     }
 
     //Método para popular o listView
@@ -152,6 +151,10 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.detalhe_empresa) {
 
             startActivity(new Intent(HomeActivity.this, DetailsEnterpriseActivity.class));
+
+        } else if (id == R.id.nav_video) {
+
+            startActivity(new Intent(HomeActivity.this, YouTubeActivity.class));
 
         } else if (id == R.id.nav_slideshow) {
 
