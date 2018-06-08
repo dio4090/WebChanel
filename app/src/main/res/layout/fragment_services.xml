@@ -2,10 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <TextView
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="@string/text_fragment_services"/>
+        android:layout_height="wrap_content"></ListView>
+
 
 </RelativeLayout>

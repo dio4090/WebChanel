@@ -1,5 +1,6 @@
 package com.example.diogo.webchanel.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -69,6 +70,7 @@ public class NewEnterpriseActivity extends AppCompatActivity implements View.OnC
             enterprise.setName(edtNewEnterpriseName.getText().toString());
             enterprise.setSocialName(edtNewEnterpriseSocialName.getText().toString());
             enterprise.setAddress(edtNewEnterpriseAddress.getText().toString());
+            enterprise.setPhone(edtNewEnterprisePhone.getText().toString());
             enterprise.setCep(Integer.parseInt(edtNewEnterpriseCep.getText().toString()));
             enterprise.setDistrict(edtNewEnterpriseDistrict.getText().toString());
             //Spinner edtNewEnterpriseCity;
@@ -102,7 +104,7 @@ public class NewEnterpriseActivity extends AppCompatActivity implements View.OnC
             case R.id.btn_add_enterprise:
                 createEnterprise();
                 showEnterprises();
-                //startActivity(new Intent(NewEnterpriseActivity.this, LoginActivity.class));
+                startActivity(new Intent(NewEnterpriseActivity.this, LoginActivity.class));
 
         }
     }

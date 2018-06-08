@@ -5,6 +5,7 @@ public class Enterprise {
     String name = "";
     String socialName = "";
     String address = "";
+    private String phone = "";
     int cep = 0;
     String district = "";
     String city = "";
@@ -101,5 +102,13 @@ public class Enterprise {
 
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

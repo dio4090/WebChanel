@@ -3,9 +3,17 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="@string/text_fragment_schedules"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agende em uma data"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="100sp"/>
+
+    <CalendarView
+        android:id="@+id/simpleCalendarView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="100dp"/>
 
 </RelativeLayout>
