@@ -5,7 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteException;
 
 import com.example.diogo.webchanel.model.Enterprise;
 
@@ -48,10 +48,6 @@ public class EnterpriseDAO {
                     + UPDATED_AT + " DATETIME );";
 
 
-    public void Reset() {
-        dbHelper.onUpgrade(this.db, 1, 1);
-    }
-
     public EnterpriseDAO(Context ctx) {
         Context = ctx;
         dbHelper = new DatabaseHelper(Context, CREATE_ENTERPRISE_TABLE, ENTERPRISE_TABLE);
@@ -66,28 +62,25 @@ public class EnterpriseDAO {
         dbHelper.close();
     }
 
-    public void dropTableEnterprise() {
-        db.execSQL("DROP TABLE IF EXISTS " + ENTERPRISE_TABLE);
-    }
-
-    public void createEnterpriseTable() {
-        db.execSQL(CREATE_ENTERPRISE_TABLE);
-    }
 
     public void insertEnterprise(Enterprise e) {
         openDB();
-        ContentValues cv = new ContentValues();
-        cv.put(NAME, e.getName());
-        cv.put(SOCIAL_NAME, e.getSocialName());
-        cv.put(ADDRESS, e.getAddress());
-        cv.put(CEP, e.getCep());
-        cv.put(DISTRICT, e.getDistrict());
-        cv.put(CITY, e.getCity());
-        cv.put(UF, e.getUf());
-        cv.put(CNPJ, e.getCnpj());
-        cv.put(TYPE, e.getType());
-        cv.put(UPDATED_AT, e.getUpdatedAt());
-        db.insert(ENTERPRISE_TABLE, null, cv);
+        try {
+            ContentValues cv = new ContentValues();
+            cv.put(NAME, e.getName());
+            cv.put(SOCIAL_NAME, e.getSocialName());
+            cv.put(ADDRESS, e.getAddress());
+            cv.put(CEP, e.getCep());
+            cv.put(DISTRICT, e.getDistrict());
+            cv.put(CITY, e.getCity());
+            cv.put(UF, e.getUf());
+            cv.put(CNPJ, e.getCnpj());
+            cv.put(TYPE, e.getType());
+            cv.put(UPDATED_AT, e.getUpdatedAt());
+            db.insert(ENTERPRISE_TABLE, null, cv);
+        } catch(SQLiteException ex) {
+            System.out.print(ex.getMessage());
+        }
         closeDB();
     }
 
@@ -118,6 +111,7 @@ public class EnterpriseDAO {
         if(cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
                 enterprise = new Enterprise();
+                enterprise.setId(cursor.getInt(cursor.getColumnIndex(ENTERPRISE_ID)));
                 enterprise.setName(cursor.getString(cursor.getColumnIndex(NAME)));
                 enterprise.setSocialName(cursor.getString(cursor.getColumnIndex(SOCIAL_NAME)));
                 enterprise.setAddress(cursor.getString(cursor.getColumnIndex(ADDRESS)));
@@ -147,6 +141,7 @@ public class EnterpriseDAO {
         Cursor cursor = db.rawQuery(sql, null);
 
         if(cursor.moveToFirst()) {
+            enterprise.setId(cursor.getInt(cursor.getColumnIndex(ENTERPRISE_ID)));
             enterprise.setName(cursor.getString(cursor.getColumnIndex(NAME)));
             enterprise.setSocialName(cursor.getString(cursor.getColumnIndex(SOCIAL_NAME)));
             enterprise.setAddress(cursor.getString(cursor.getColumnIndex(ADDRESS)));
@@ -173,6 +168,7 @@ public class EnterpriseDAO {
         Cursor cursor = db.rawQuery(sql, null);
 
         if(cursor.moveToFirst()) {
+            enterprise.setId(cursor.getInt(cursor.getColumnIndex(ENTERPRISE_ID)));
             enterprise.setName(cursor.getString(cursor.getColumnIndex(NAME)));
             enterprise.setSocialName(cursor.getString(cursor.getColumnIndex(SOCIAL_NAME)));
             enterprise.setAddress(cursor.getString(cursor.getColumnIndex(ADDRESS)));
@@ -199,6 +195,7 @@ public class EnterpriseDAO {
         Cursor cursor = db.rawQuery(sql, null);
 
         if(cursor.moveToFirst()) {
+            enterprise.setId(cursor.getInt(cursor.getColumnIndex(ENTERPRISE_ID)));
             enterprise.setName(cursor.getString(cursor.getColumnIndex(NAME)));
             enterprise.setSocialName(cursor.getString(cursor.getColumnIndex(SOCIAL_NAME)));
             enterprise.setAddress(cursor.getString(cursor.getColumnIndex(ADDRESS)));

@@ -41,6 +41,7 @@ public class FragmentDetails extends Fragment {
         inf = inflater.inflate(R.layout.fragment_details, container, false);
         initializeVariables(getActivity());
         showEnterprises();
+        printEnterprises();
         return inf;
     }
 
@@ -69,6 +70,19 @@ public class FragmentDetails extends Fragment {
             txtCity.setText("Cidade: "+e.getCity());
             txtUf.setText("UF: "+e.getUf());
         }
+    }
+
+    private void printEnterprises() {
+        ent = entDAO.findEnterpriseById(1);
+
+        System.out.println("ID: " +ent.getId());
+        System.out.println("Nome da Empresa: " +ent.getName());
+        System.out.println("Endereço: "+ent.getAddress());
+        System.out.println("Telefone: "+ent.getPhone());
+        System.out.println("CEP: "+ent.getCep());
+        System.out.println("Bairro: "+ent.getDistrict());
+        System.out.println("Cidade: "+ent.getCity());
+        System.out.println("UF: "+ent.getUf());
     }
 
 }
