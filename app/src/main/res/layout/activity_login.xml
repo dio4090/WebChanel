@@ -21,7 +21,8 @@
         android:singleLine="true"
         android:inputType="textEmailAddress"
         android:background="#ffffff"
-        android:hint="Login" />
+        android:hint="Login"
+        android:text="teste@gmail.com" />
 
     <EditText
         android:id="@+id/edt_password"
@@ -37,7 +38,8 @@
         android:focusableInTouchMode="true"
         android:singleLine="true"
         android:hint="Password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:text="teste123" />
 
     <Button
         android:id="@+id/btn_login"
