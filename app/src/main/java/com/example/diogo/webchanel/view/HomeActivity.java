@@ -1,12 +1,10 @@
 package com.example.diogo.webchanel.view;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,11 +12,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.diogo.webchanel.R;
-import com.example.diogo.webchanel.model.EnterpriseTest;
+import com.example.diogo.webchanel.dao.EnterpriseDAO;
+import com.example.diogo.webchanel.model.Enterprise;
+import com.example.diogo.webchanel.util.AndroidUtil;
 import com.example.diogo.webchanel.util.EnterpriseAdapter;
 
 import java.util.ArrayList;
@@ -26,6 +27,11 @@ import java.util.ArrayList;
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    //GLOBAL VARIABLES
+    AndroidUtil util;
+    Enterprise enterprise;
+    ArrayList<Enterprise> enterpriseList;
+    EnterpriseDAO enterpriseDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,52 +60,41 @@ public class HomeActivity extends AppCompatActivity
 
         //Rerefênciamento ao listView e criando o arrayAdapter
         ListView lista = (ListView) findViewById(R.id.lvEnterprises);
-        ArrayList<EnterpriseTest> enterprises = adicionarEnterprises();
+        ArrayList<Enterprise> enterprises = adicionarEnterprises();
         ArrayAdapter adapter = new EnterpriseAdapter(this, enterprises);
         lista.setAdapter(adapter);
     }
 
     //Método para popular o listView
-    private ArrayList<EnterpriseTest> adicionarEnterprises() {
-        ArrayList<EnterpriseTest> enterprises = new ArrayList<EnterpriseTest>();
-        EnterpriseTest e = new EnterpriseTest("Barbearia 01",
-                "Rua Pacatuba S/N", R.drawable.barbearia1);
-        enterprises.add(e);
-        e = new EnterpriseTest("Barbearia 02",
-                "Rua Sergipe S/N", R.drawable.barbearia2);
-        enterprises.add(e);
-        e = new EnterpriseTest("Barbearia 03",
-                "Av. Otoniel Dórea", R.drawable.barbearia3);
-        enterprises.add(e);
-        e = new EnterpriseTest("Barbearia 04",
-                "R. Franklin Campos, 1675", R.drawable.barbearia4);
-        e = new EnterpriseTest("Barbearia 02",
-                "Rua Sergipe S/N", R.drawable.barbearia2);
-        enterprises.add(e);
-        e = new EnterpriseTest("Barbearia 03",
-                "Av. Otoniel Dórea", R.drawable.barbearia3);
-        enterprises.add(e);
-        e = new EnterpriseTest("Barbearia 04",
-                "R. Franklin Campos, 1675", R.drawable.barbearia4);
-        e = new EnterpriseTest("Barbearia 02",
-                "Rua Sergipe S/N", R.drawable.barbearia2);
-        enterprises.add(e);
-        e = new EnterpriseTest("Barbearia 03",
-                "Av. Otoniel Dórea", R.drawable.barbearia3);
-        enterprises.add(e);
-        e = new EnterpriseTest("Barbearia 04",
-                "R. Franklin Campos, 1675", R.drawable.barbearia4);
-        e = new EnterpriseTest("Barbearia 02",
-                "Rua Sergipe S/N", R.drawable.barbearia2);
-        enterprises.add(e);
-        e = new EnterpriseTest("Barbearia 03",
-                "Av. Otoniel Dórea", R.drawable.barbearia3);
-        enterprises.add(e);
-        e = new EnterpriseTest("Barbearia 04",
-                "R. Franklin Campos, 1675", R.drawable.barbearia4);
-        enterprises.add(e);
+    private ArrayList<Enterprise> adicionarEnterprises() {
+        enterpriseList = new ArrayList<>();
+        enterpriseDAO = new EnterpriseDAO(this);
 
-        return enterprises;
+        enterpriseList = enterpriseDAO.findAllEnterprises();
+        util = new AndroidUtil();
+
+        //PEGANDO UMA IMAGEM RANDOMICAMENTE
+        for(Enterprise e : enterpriseList) {
+            int imageNum = util.getRandomInterger(0, 5);
+            switch (imageNum) {
+                case 1:
+                    e.setImage(R.drawable.barbearia1);
+                    break;
+                case 2:
+                    e.setImage(R.drawable.barbearia2);
+                    break;
+                case 3:
+                    e.setImage(R.drawable.barbearia3);
+                    break;
+                case 4:
+                    e.setImage(R.drawable.barbearia4);
+                    break;
+                default:
+                    e.setImage(R.drawable.barbearia1);
+                    break;
+            }
+        }
+        return enterpriseList;
     }
 
     @Override

@@ -7,6 +7,12 @@ import android.support.v7.app.AlertDialog;
 
 public class AndroidUtil {
 
+
+    public Integer getRandomInterger(int min, int max) {
+        int resp = min + (int)(Math.random() * ((max - min) + 1));
+        return resp;
+    }
+
     public void generateDialog(Context ctx, String title, String message) {
         AlertDialog.Builder builder;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

@@ -1,18 +1,19 @@
 package com.example.diogo.webchanel.model;
 
 public class Enterprise {
-    int id = 0;
-    String name = "";
-    String socialName = "";
-    String address = "";
+    private int id = 0;
+    private String name = "";
+    private String socialName = "";
+    private String address = "";
     private String phone = "";
-    int cep = 0;
-    String district = "";
-    String city = "";
-    String uf = "";
-    String cnpj = "";
-    String type = "";
-    String updatedAt = "";
+    private int cep = 0;
+    private String district = "";
+    private String city = "";
+    private String uf = "";
+    private String cnpj = "";
+    private String type = "";
+    private String updatedAt = "";
+    private int image; // vai armazenar o identificador do recurso
 
 
     //GETTERS AND SETTERS
@@ -110,5 +111,12 @@ public class Enterprise {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+    public int getImage() {
+        return image;
+    }
+
+    public void setImage(int image) {
+        this.image = image;
     }
 }
