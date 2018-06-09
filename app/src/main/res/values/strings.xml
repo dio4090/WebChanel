@@ -15,7 +15,7 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_detalhe_empresa">DetalheEmpresaActivity</string>
-
+    <string name="title_activity_video">VideoActivity</string>
     <string name="text_fragment_details">Esta é a Fragment DETALHES</string>
     <string name="text_fragment_services">Esta é a Fragment SERVIÇOS</string>
     <string name="text_fragment_schedules">Esta é a Fragment AGENDAMENTOS</string>

@@ -64,8 +64,8 @@
             android:label="@string/title_activity_maps"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".view.YouTubeActivity"
-            android:label="Video"
+            android:name=".view.VideoActivity"
+            android:label="@string/title_activity_video"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

@@ -1,11 +1,10 @@
 package com.example.diogo.webchanel.view;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,7 +20,6 @@ import android.widget.ListView;
 import com.example.diogo.webchanel.R;
 import com.example.diogo.webchanel.model.EnterpriseTest;
 import com.example.diogo.webchanel.util.EnterpriseAdapter;
-import com.example.diogo.webchanel.view.fragments.MapsFragments;
 
 import java.util.ArrayList;
 
@@ -59,7 +57,6 @@ public class HomeActivity extends AppCompatActivity
         ArrayList<EnterpriseTest> enterprises = adicionarEnterprises();
         ArrayAdapter adapter = new EnterpriseAdapter(this, enterprises);
         lista.setAdapter(adapter);
-
     }
 
     //Método para popular o listView
@@ -154,7 +151,7 @@ public class HomeActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_video) {
 
-            startActivity(new Intent(HomeActivity.this, YouTubeActivity.class));
+            startActivity(new Intent(HomeActivity.this, VideoActivity.class));
 
         } else if (id == R.id.nav_slideshow) {
 
