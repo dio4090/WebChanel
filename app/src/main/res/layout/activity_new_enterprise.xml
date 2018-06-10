@@ -15,11 +15,11 @@
         android:layout_marginBottom="15sp" >
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Novo Cadastro de Empresa"
             android:textSize="25sp"
-            android:layout_marginLeft="30dp"
+            android:gravity="center"
             android:layout_marginBottom="20dp" />
 
         <TextView
@@ -104,27 +104,27 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cidade"
+            android:text="UF"
             android:textSize="20sp"
             android:layout_marginTop="10dp" />
 
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/spi_new_enterprise_city" />
+            android:id="@+id/spi_new_enterprise_uf" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="UF"
+            android:text="Cidade"
             android:textSize="20sp"
             android:layout_marginTop="10dp" />
 
         <EditText
-            android:layout_width="12dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/edt_new_enterprise_uf"
-            android:text="PE" />
+            android:id="@+id/edt_new_enterprise_city"
+            android:text="Recife" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -146,13 +146,10 @@
             android:layout_marginTop="20dp"
             android:textSize="20sp" />
 
-        <RadioButton
-            android:text="Salão de Beleza"
-            android:id="@+id/rbt_new_enterprise_salon"/>
-
-        <RadioButton
-            android:text="Barbearia"
-            android:id="@+id/rbt_new_enterprise_barber"/>
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/spi_new_enterprise_type" />
 
         <Button
             android:layout_width="match_parent"

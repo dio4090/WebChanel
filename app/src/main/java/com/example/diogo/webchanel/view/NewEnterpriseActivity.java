@@ -4,9 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -15,6 +15,7 @@ import com.example.diogo.webchanel.dao.EnterpriseDAO;
 import com.example.diogo.webchanel.model.Enterprise;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class NewEnterpriseActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -29,12 +30,12 @@ public class NewEnterpriseActivity extends AppCompatActivity implements View.OnC
     EditText edtNewEnterprisePhone;
     EditText edtNewEnterpriseCep;
     EditText edtNewEnterpriseDistrict;
-    Spinner edtNewEnterpriseCity;
-    EditText edtNewEnterpriseUf;
+    EditText edtNewEnterpriseCity;
+    Spinner edtNewEnterpriseUf;
     EditText edtNewEnterpriseCnpj;
-    RadioButton rbtnEdtNewEnterpriseSalon;
-    RadioButton rbtnEdtNewEnterpriseBarber;
+    Spinner spiEdtNewEnterpriseType;
     Button btnAddNewEnterprise;
+    Spinner sItems, sItemsType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,17 +48,63 @@ public class NewEnterpriseActivity extends AppCompatActivity implements View.OnC
         enterprise = new Enterprise();
         enterpriseDAO = new EnterpriseDAO(this);
 
+        // you need to have a list of data that you want the spinner to display
+        List<String> spinnerArray =  new ArrayList<String>();
+        spinnerArray.add("AC");
+        spinnerArray.add("AL");
+        spinnerArray.add("AP");
+        spinnerArray.add("AM");
+        spinnerArray.add("BA");
+        spinnerArray.add("CE");
+        spinnerArray.add("DF");
+        spinnerArray.add("ES");
+        spinnerArray.add("GO");
+        spinnerArray.add("MA");
+        spinnerArray.add("MT");
+        spinnerArray.add("MS");
+        spinnerArray.add("MG");
+        spinnerArray.add("PA");
+        spinnerArray.add("PB");
+        spinnerArray.add("PR");
+        spinnerArray.add("PE");
+        spinnerArray.add("PI");
+        spinnerArray.add("RJ");
+        spinnerArray.add("RN");
+        spinnerArray.add("RS");
+        spinnerArray.add("RO");
+        spinnerArray.add("RR");
+        spinnerArray.add("SC");
+        spinnerArray.add("SP");
+        spinnerArray.add("SE");
+        spinnerArray.add("TO");
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerArray);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sItems = (Spinner) findViewById(R.id.spi_new_enterprise_uf);
+        sItems.setAdapter(adapter);
+
+
+        // you need to have a list of data that you want the spinner to display
+        List<String> spinnerArrayType =  new ArrayList<String>();
+        spinnerArrayType.add("Barbearia");
+        spinnerArrayType.add("Barbearia e Shop");
+        spinnerArrayType.add("Salão");
+
+        ArrayAdapter<String> adapterType = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerArrayType);
+        adapterType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sItemsType = (Spinner) findViewById(R.id.spi_new_enterprise_type);
+        sItemsType.setAdapter(adapterType);
+
         edtNewEnterpriseName = (EditText) findViewById(R.id.edt_new_enterprise_name);
         edtNewEnterpriseSocialName = (EditText) findViewById(R.id.edt_new_enterprise_social_name);
         edtNewEnterpriseAddress = (EditText) findViewById(R.id.edt_new_enterprise_address);
         edtNewEnterprisePhone = (EditText) findViewById(R.id.edt_new_enterprise_phone);
         edtNewEnterpriseCep = (EditText) findViewById(R.id.edt_new_enterprise_cep);
         edtNewEnterpriseDistrict = (EditText) findViewById(R.id.edt_new_enterprise_district);
-        edtNewEnterpriseCity = (Spinner) findViewById(R.id.spi_new_enterprise_city);
-        edtNewEnterpriseUf = (EditText) findViewById(R.id.edt_new_enterprise_uf);
+        edtNewEnterpriseCity = (EditText) findViewById(R.id.edt_new_enterprise_city);
+        edtNewEnterpriseUf = (Spinner) findViewById(R.id.spi_new_enterprise_uf);
         edtNewEnterpriseCnpj = (EditText) findViewById(R.id.edt_new_enterprise_cnpj);
-        rbtnEdtNewEnterpriseSalon = (RadioButton) findViewById(R.id.rbt_new_enterprise_salon);
-        rbtnEdtNewEnterpriseBarber = (RadioButton) findViewById(R.id.rbt_new_enterprise_barber);
+        spiEdtNewEnterpriseType = (Spinner) findViewById(R.id.spi_new_enterprise_type);
         btnAddNewEnterprise = (Button) findViewById(R.id.btn_add_enterprise);
 
         btnAddNewEnterprise.setOnClickListener(this);
@@ -73,12 +120,10 @@ public class NewEnterpriseActivity extends AppCompatActivity implements View.OnC
             enterprise.setPhone(edtNewEnterprisePhone.getText().toString());
             enterprise.setCep(Integer.parseInt(edtNewEnterpriseCep.getText().toString()));
             enterprise.setDistrict(edtNewEnterpriseDistrict.getText().toString());
-            //Spinner edtNewEnterpriseCity;
-            enterprise.setUf(edtNewEnterpriseUf.getText().toString());
+            enterprise.setCity(edtNewEnterpriseCity.getText().toString());
+            enterprise.setUf(sItems.getSelectedItem().toString());
             enterprise.setCnpj(edtNewEnterpriseCnpj.getText().toString());
-            //RadioButton rbtnEdtNewEnterpriseSalon;
-            //RadioButton rbtnEdtNewEnterpriseBarber;
-
+            enterprise.setType(sItemsType.getSelectedItem().toString());
             enterpriseDAO.insertEnterprise(enterprise);
         } catch (Exception e) {
             System.out.println("Error on createEnterprise(): " + e.getMessage());

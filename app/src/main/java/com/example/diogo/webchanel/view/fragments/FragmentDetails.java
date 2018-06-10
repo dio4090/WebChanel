@@ -64,11 +64,10 @@ public class FragmentDetails extends Fragment implements Serializable {
     }
 
     private void showEnterprises(){
-
         // Just assume that in the real app we would really ask it!
         MyApplication app = (MyApplication) getActivity().getApplication();
 
-        txtEnterpriseName.setText("Nome da Empresa: " + app.getEnterprise().getName());
+        txtEnterpriseName.setText(app.getEnterprise().getName());
         txtAddress.setText("Endereço: "+ app.getEnterprise().getAddress());
         txtPhone.setText("Telefone: "+app.getEnterprise().getPhone());
         txtCep.setText("CEP: "+app.getEnterprise().getCep());
