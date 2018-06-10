@@ -2,6 +2,7 @@
 package com.example.diogo.webchanel.view.fragments;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,14 +12,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.diogo.webchanel.MyApplication;
 import com.example.diogo.webchanel.R;
 import com.example.diogo.webchanel.dao.EnterpriseDAO;
 import com.example.diogo.webchanel.model.Enterprise;
 import com.example.diogo.webchanel.view.NewEnterpriseActivity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class FragmentDetails extends Fragment {
+public class FragmentDetails extends Fragment implements Serializable {
 
     //GLOBAL VARIABLES
     Enterprise ent;
@@ -34,6 +37,8 @@ public class FragmentDetails extends Fragment {
     TextView txtDistrict;
     TextView txtCity;
     TextView txtUf;
+
+    public FragmentDetails() {}
 
     @Nullable
     @Override
@@ -59,17 +64,17 @@ public class FragmentDetails extends Fragment {
     }
 
     private void showEnterprises(){
-        enterpriseList = entDAO.findAllEnterprises();
 
-        for(Enterprise e : enterpriseList) {
-            txtEnterpriseName.setText("Nome da Empresa: " +e.getName());
-            txtAddress.setText("Endereço: "+e.getAddress());
-            txtPhone.setText("Telefone: "+e.getPhone());
-            txtCep.setText("CEP: "+e.getCep());
-            txtDistrict.setText("Bairro: "+e.getDistrict());
-            txtCity.setText("Cidade: "+e.getCity());
-            txtUf.setText("UF: "+e.getUf());
-        }
+        // Just assume that in the real app we would really ask it!
+        MyApplication app = (MyApplication) getActivity().getApplication();
+
+        txtEnterpriseName.setText("Nome da Empresa: " + app.getEnterprise().getName());
+        txtAddress.setText("Endereço: "+ app.getEnterprise().getAddress());
+        txtPhone.setText("Telefone: "+app.getEnterprise().getPhone());
+        txtCep.setText("CEP: "+app.getEnterprise().getCep());
+        txtDistrict.setText("Bairro: "+app.getEnterprise().getDistrict());
+        txtCity.setText("Cidade: "+app.getEnterprise().getCity());
+        txtUf.setText("UF: "+app.getEnterprise().getUf());
     }
 
     private void printEnterprises() {

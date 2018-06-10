@@ -13,19 +13,22 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.diogo.webchanel.MyApplication;
 import com.example.diogo.webchanel.R;
 import com.example.diogo.webchanel.dao.EnterpriseDAO;
 import com.example.diogo.webchanel.model.Enterprise;
 import com.example.diogo.webchanel.util.AndroidUtil;
 import com.example.diogo.webchanel.util.EnterpriseAdapter;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, Serializable {
 
     //GLOBAL VARIABLES
     AndroidUtil util;
@@ -59,10 +62,22 @@ public class HomeActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         //Rerefênciamento ao listView e criando o arrayAdapter
-        ListView lista = (ListView) findViewById(R.id.lvEnterprises);
+        final ListView lista = (ListView) findViewById(R.id.lvEnterprises);
         ArrayList<Enterprise> enterprises = adicionarEnterprises();
-        ArrayAdapter adapter = new EnterpriseAdapter(this, enterprises);
+        final ArrayAdapter adapter = new EnterpriseAdapter(this, enterprises);
         lista.setAdapter(adapter);
+
+        //Adicionando evento ao click da lista
+        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+           @Override
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                // Classe global
+                MyApplication app = (MyApplication) getApplication();
+                //Passando o enterprise que foi selecionado
+                app.setEnterprise ((Enterprise) lista.getAdapter().getItem(position));
+                startActivity(new Intent(HomeActivity.this, DetailsEnterpriseActivity.class));
+            }
+        });
     }
 
     //Método para popular o listView
