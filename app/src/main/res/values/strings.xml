@@ -6,7 +6,7 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Disconect</string>
     <string name="title_activity_maps_fragments">Map</string>
     <string name="title_activity_principal">WebChanel</string>
     <string name="title_activity_maps_fragment">Map</string>

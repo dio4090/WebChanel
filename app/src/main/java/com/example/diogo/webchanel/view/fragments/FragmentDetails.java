@@ -7,6 +7,10 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +20,7 @@ import com.example.diogo.webchanel.MyApplication;
 import com.example.diogo.webchanel.R;
 import com.example.diogo.webchanel.dao.EnterpriseDAO;
 import com.example.diogo.webchanel.model.Enterprise;
+import com.example.diogo.webchanel.view.MapActivity;
 import com.example.diogo.webchanel.view.NewEnterpriseActivity;
 
 import java.io.Serializable;
@@ -37,6 +42,8 @@ public class FragmentDetails extends Fragment implements Serializable {
     TextView txtDistrict;
     TextView txtCity;
     TextView txtUf;
+    TextView txtMap;
+
 
     public FragmentDetails() {}
 
@@ -47,6 +54,28 @@ public class FragmentDetails extends Fragment implements Serializable {
         initializeVariables(getActivity());
         showEnterprises();
         printEnterprises();
+
+        //Ação para chamar MapActivity
+        txtMap = (TextView) inf.findViewById(R.id.txt_view_map);
+        String text = "Ver no Mapa...";
+        SpannableString mSpannableString = new SpannableString(text);
+        ClickableSpan clickableSpan = new ClickableSpan() {
+            @Override
+            public void onClick(View widget) {
+
+                Intent intent = new Intent(getActivity(), MapActivity.class);
+                intent.putExtra("address", txtAddress.getText()
+                        + ", "+txtDistrict.getText()+ ", "+ txtUf.getText());
+                startActivity(intent);
+
+            }
+        };
+
+        mSpannableString.setSpan(clickableSpan, 0, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        txtMap.setText(mSpannableString);
+        txtMap.setMovementMethod(LinkMovementMethod.getInstance());
+
         return inf;
     }
 

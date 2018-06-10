@@ -1,4 +1,4 @@
-package com.example.diogo.webchanel.util;
+package com.example.diogo.webchanel.view.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;

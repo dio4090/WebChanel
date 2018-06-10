@@ -61,13 +61,16 @@
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".view.MapsActivity"
+            android:name=".view.MapActivityFixed"
             android:label="@string/title_activity_maps"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".view.VideoActivity"
             android:label="@string/title_activity_video"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity android:name=".view.MapActivity"/>
+
     </application>
 
 </manifest>

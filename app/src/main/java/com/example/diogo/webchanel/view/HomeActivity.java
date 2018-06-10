@@ -22,7 +22,7 @@ import com.example.diogo.webchanel.R;
 import com.example.diogo.webchanel.dao.EnterpriseDAO;
 import com.example.diogo.webchanel.model.Enterprise;
 import com.example.diogo.webchanel.util.AndroidUtil;
-import com.example.diogo.webchanel.util.EnterpriseAdapter;
+import com.example.diogo.webchanel.view.adapters.EnterpriseAdapter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -147,25 +147,16 @@ public class HomeActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+        // O item de visualização de navegação do manipulador clica aqui.
         int id = item.getItemId();
 
         if (id == R.id.provider) {
-            // Handle the camera action
-
-            startActivity(new Intent(HomeActivity.this, MapsActivity.class));
-
-        } else if (id == R.id.detalhe_empresa) {
-
-            startActivity(new Intent(HomeActivity.this, DetailsEnterpriseActivity.class));
+            // Chamando MapActivity
+            startActivity(new Intent(HomeActivity.this, MapActivityFixed.class));
 
         } else if (id == R.id.nav_video) {
-
+            // Chamando VideoActivity
             startActivity(new Intent(HomeActivity.this, VideoActivity.class));
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
 
