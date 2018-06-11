@@ -28,7 +28,8 @@
     <string name="title_activity_main">WebChanel</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_maps">Localização</string>
+    <string name="title_activity_maps">Nossa Localização</string>
+    <string name="title_fragments_maps">Nossa Localização</string>
+
 
 </resources>

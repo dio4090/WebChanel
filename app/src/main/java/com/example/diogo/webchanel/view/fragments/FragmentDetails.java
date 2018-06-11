@@ -34,8 +34,9 @@ public class FragmentDetails extends Fragment implements Serializable {
     ArrayList<Enterprise> enterpriseList;
     NewEnterpriseActivity newEnterprise;
     View inf;
+    MyApplication app;
 
-    TextView txtEnterpriseName;
+    //TextView txtEnterpriseName;
     TextView txtAddress;
     TextView txtPhone;
     TextView txtCep;
@@ -54,6 +55,10 @@ public class FragmentDetails extends Fragment implements Serializable {
         initializeVariables(getActivity());
         showEnterprises();
         printEnterprises();
+
+        //Setando nome da empresa em Title Activity
+        //getActivity().setTitle(txtEnterpriseName.getText());
+        getActivity().setTitle(app.getEnterprise().getName());
 
         //Ação para chamar MapActivity
         txtMap = (TextView) inf.findViewById(R.id.txt_view_map);
@@ -83,7 +88,7 @@ public class FragmentDetails extends Fragment implements Serializable {
         entDAO = new EnterpriseDAO(a);
         ent = new Enterprise();
 
-        txtEnterpriseName = (TextView) inf.findViewById(R.id.txt_enterprise_name);
+        //txtEnterpriseName = (TextView) inf.findViewById(R.id.txt_enterprise_name);
         txtAddress = (TextView) inf.findViewById((R.id.txt_address));
         txtPhone = (TextView) inf.findViewById(R.id.txt_phone);
         txtCep = (TextView) inf.findViewById(R.id.txt_cep);
@@ -94,9 +99,9 @@ public class FragmentDetails extends Fragment implements Serializable {
 
     private void showEnterprises(){
         // Just assume that in the real app we would really ask it!
-        MyApplication app = (MyApplication) getActivity().getApplication();
+        app = (MyApplication) getActivity().getApplication();
 
-        txtEnterpriseName.setText(app.getEnterprise().getName());
+        //txtEnterpriseName.setText(app.getEnterprise().getName());
         txtAddress.setText("Endereço: "+ app.getEnterprise().getAddress());
         txtPhone.setText("Telefone: "+app.getEnterprise().getPhone());
         txtCep.setText("CEP: "+app.getEnterprise().getCep());

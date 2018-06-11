@@ -38,7 +38,6 @@ public class DetailsEnterpriseActivity extends AppCompatActivity {
 
         mTabLayout.setupWithViewPager(mViewPager);
 
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,7 +46,6 @@ public class DetailsEnterpriseActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
 
     }
 
