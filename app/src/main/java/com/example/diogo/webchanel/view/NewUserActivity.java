@@ -1,27 +1,28 @@
 package com.example.diogo.webchanel.view;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
+import com.example.diogo.webchanel.MyApplication;
 import com.example.diogo.webchanel.R;
 import com.example.diogo.webchanel.dao.UserDAO;
 import com.example.diogo.webchanel.model.User;
 import com.example.diogo.webchanel.util.AndroidUtil;
 
+import java.util.ArrayList;
+
 public class NewUserActivity extends AppCompatActivity implements View.OnClickListener {
 
     //GLOBAL VARIABLES
     User user;
+    ArrayList<User> usersList;
     UserDAO userDAO;
     AndroidUtil util;
+    MyApplication app;
 
     EditText edtNewUserName;
     EditText edtNewUserAddess;
@@ -40,7 +41,9 @@ public class NewUserActivity extends AppCompatActivity implements View.OnClickLi
 
     private void initializeVariables() {
         user = new User();
+        usersList = new ArrayList<User>();
         userDAO = new UserDAO(this);
+        app = (MyApplication) getApplication();
 
         edtNewUserName = (EditText) findViewById(R.id.edt_new_user_name);
         edtNewUserAddess = (EditText) findViewById(R.id.edt_new_user_address);
@@ -53,29 +56,27 @@ public class NewUserActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void createUser() {
-        try {
-            user = new User();
+        user = new User();
 
-            user.setName(edtNewUserName.getText().toString());
-            user.setAddress(edtNewUserAddess.getText().toString());
-            user.setPhone(edtNewUserPhone.getText().toString());
-            user.setEmail(edtNewUserEmail.getText().toString());
-            user.setPassword(edtNewUserPassword.getText().toString());
+        user.setName(edtNewUserName.getText().toString());
+        user.setAddress(edtNewUserAddess.getText().toString());
+        user.setPhone(edtNewUserPhone.getText().toString());
+        user.setEmail(edtNewUserEmail.getText().toString());
+        user.setPassword(edtNewUserPassword.getText().toString());
 
-            userDAO.insertUser(user);
-        } catch (Exception e) {
-            System.out.println("Error on createUser(): " + e.getMessage());
-            Toast.makeText(this, "Erro ao realizar o cadastro", Toast.LENGTH_LONG).show();
-        }
+        userDAO.insertUser(user, this);
+        app.setUser(user);
     }
 
     private void showUsers(){
-        user = new User();
-        user = userDAO.findUserById(1);
-        System.out.println("ENPRESA CADASTRADA:");
-        System.out.println("ID:"+user.getId());
-        System.out.println("NOME:"+user.getName());
-        System.out.println("EMAIL:"+user.getEmail());
+        usersList = userDAO.findAllUsers();
+
+        for(User u : usersList) {
+            System.out.println("USUARIO CADASTRADO:");
+            System.out.println("ID:"+u.getId());
+            System.out.println("NOME:"+u.getName());
+            System.out.println("EMAIL:"+u.getEmail());
+        }
     }
 
     @Override
@@ -84,7 +85,13 @@ public class NewUserActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.btn_add_user:
                 createUser();
                 showUsers();
-                startActivity(new Intent(NewUserActivity.this, LoginActivity.class));
+
+                //Verifica se nao e uma nova empresa
+                if(!app.isNewEnterprise()) {
+                    startActivity(new Intent(NewUserActivity.this, LoginActivity.class));
+                } else {
+                    startActivity(new Intent(NewUserActivity.this, NewEnterpriseActivity.class));
+                }
 
         }
     }

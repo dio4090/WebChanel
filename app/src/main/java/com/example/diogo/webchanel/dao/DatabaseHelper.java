@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "webchanel.db";
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 11;
 
     private String CREATE_TABLE = "";
     private String TABLE_NAME = "";

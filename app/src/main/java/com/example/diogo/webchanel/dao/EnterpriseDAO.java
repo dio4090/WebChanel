@@ -23,6 +23,7 @@ public class EnterpriseDAO {
     public static String CNPJ = "cnpj";
     public static String TYPE = "type";
     public static String UPDATED_AT = "updatedAt";
+    public static String USER_ID = "user_id";
 
     //GLOBAL VARIABLES
     Enterprise enterprise;
@@ -45,7 +46,10 @@ public class EnterpriseDAO {
                     + UF + " TEXT,"
                     + CNPJ + " TEXT UNIQUE NOT NULL,"
                     + TYPE + " TEXT,"
-                    + UPDATED_AT + " DATETIME );";
+                    + UPDATED_AT + " DATETIME,"
+                    + USER_ID + " INTEGER, "
+                    + "FOREIGN KEY(" +USER_ID+") REFERENCES users(id) );";
+
 
 
     public EnterpriseDAO(Context ctx) {
@@ -77,6 +81,7 @@ public class EnterpriseDAO {
             cv.put(CNPJ, e.getCnpj());
             cv.put(TYPE, e.getType());
             cv.put(UPDATED_AT, e.getUpdatedAt());
+            cv.put(USER_ID, e.getUserId());
             db.insert(ENTERPRISE_TABLE, null, cv);
         } catch(SQLiteException ex) {
             System.out.print(ex.getMessage());
@@ -97,6 +102,7 @@ public class EnterpriseDAO {
         cv.put(CNPJ, e.getCnpj());
         cv.put(TYPE, e.getType());
         cv.put(UPDATED_AT, e.getUpdatedAt());
+        cv.put(USER_ID, e.getUserId());
         db.update(ENTERPRISE_TABLE, cv, ENTERPRISE_ID+"="+e.getId(), null);
         closeDB();
     }
@@ -122,6 +128,7 @@ public class EnterpriseDAO {
                 enterprise.setCnpj(cursor.getString(cursor.getColumnIndex(CNPJ)));
                 enterprise.setType(cursor.getString(cursor.getColumnIndex(TYPE)));
                 enterprise.setUpdatedAt(cursor.getString(cursor.getColumnIndex(UPDATED_AT)));
+                enterprise.setUserId(cursor.getInt(cursor.getColumnIndex(USER_ID)));
                 enterpriseList.add(enterprise);
                 cursor.moveToNext();
             }
@@ -152,6 +159,7 @@ public class EnterpriseDAO {
             enterprise.setCnpj(cursor.getString(cursor.getColumnIndex(CNPJ)));
             enterprise.setType(cursor.getString(cursor.getColumnIndex(TYPE)));
             enterprise.setUpdatedAt(cursor.getString(cursor.getColumnIndex(UPDATED_AT)));
+            enterprise.setUserId(cursor.getInt(cursor.getColumnIndex(USER_ID)));
         }
 
         cursor.close();
@@ -179,6 +187,7 @@ public class EnterpriseDAO {
             enterprise.setCnpj(cursor.getString(cursor.getColumnIndex(CNPJ)));
             enterprise.setType(cursor.getString(cursor.getColumnIndex(TYPE)));
             enterprise.setUpdatedAt(cursor.getString(cursor.getColumnIndex(UPDATED_AT)));
+            enterprise.setUserId(cursor.getInt(cursor.getColumnIndex(USER_ID)));
         }
 
         cursor.close();
@@ -206,6 +215,35 @@ public class EnterpriseDAO {
             enterprise.setCnpj(cursor.getString(cursor.getColumnIndex(CNPJ)));
             enterprise.setType(cursor.getString(cursor.getColumnIndex(TYPE)));
             enterprise.setUpdatedAt(cursor.getString(cursor.getColumnIndex(UPDATED_AT)));
+            enterprise.setUserId(cursor.getInt(cursor.getColumnIndex(USER_ID)));
+        }
+
+        cursor.close();
+        closeDB();
+
+        return enterprise;
+    }
+
+    public Enterprise findEnterpriseByUserId(int userId) {
+        enterprise = new Enterprise();
+
+        openDB();
+        String sql = "SELECT * FROM " +ENTERPRISE_TABLE+ " WHERE " +USER_ID+ " = " + userId;
+        Cursor cursor = db.rawQuery(sql, null);
+
+        if(cursor.moveToFirst()) {
+            enterprise.setId(cursor.getInt(cursor.getColumnIndex(ENTERPRISE_ID)));
+            enterprise.setName(cursor.getString(cursor.getColumnIndex(NAME)));
+            enterprise.setSocialName(cursor.getString(cursor.getColumnIndex(SOCIAL_NAME)));
+            enterprise.setAddress(cursor.getString(cursor.getColumnIndex(ADDRESS)));
+            enterprise.setCep(cursor.getInt(cursor.getColumnIndex(CEP)));
+            enterprise.setDistrict(cursor.getString(cursor.getColumnIndex(DISTRICT)));
+            enterprise.setCity(cursor.getString(cursor.getColumnIndex(CITY)));
+            enterprise.setUf(cursor.getString(cursor.getColumnIndex(UF)));
+            enterprise.setCnpj(cursor.getString(cursor.getColumnIndex(CNPJ)));
+            enterprise.setType(cursor.getString(cursor.getColumnIndex(TYPE)));
+            enterprise.setUpdatedAt(cursor.getString(cursor.getColumnIndex(UPDATED_AT)));
+            enterprise.setUserId(cursor.getInt(cursor.getColumnIndex(USER_ID)));
         }
 
         cursor.close();

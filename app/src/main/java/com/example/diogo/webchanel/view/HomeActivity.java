@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.diogo.webchanel.MyApplication;
+import com.example.diogo.webchanel.NewServiceActivity;
 import com.example.diogo.webchanel.R;
 import com.example.diogo.webchanel.dao.EnterpriseDAO;
 import com.example.diogo.webchanel.model.Enterprise;
@@ -35,6 +36,7 @@ public class HomeActivity extends AppCompatActivity
     Enterprise enterprise;
     ArrayList<Enterprise> enterpriseList;
     EnterpriseDAO enterpriseDAO;
+    MyApplication app;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,7 +161,8 @@ public class HomeActivity extends AppCompatActivity
             startActivity(new Intent(HomeActivity.this, VideoActivity.class));
 
         } else if (id == R.id.nav_share) {
-
+            // Chamando ServiceActivity
+            startActivity(new Intent(HomeActivity.this, NewServiceActivity.class));
         } else if (id == R.id.nav_send) {
 
         }

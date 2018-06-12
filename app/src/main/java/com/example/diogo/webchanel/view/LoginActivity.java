@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.example.diogo.webchanel.MyApplication;
 import com.example.diogo.webchanel.R;
 import com.android.volley.Response;
 import com.example.diogo.webchanel.model.User;
@@ -29,6 +30,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     TextView txtNewUser;
     TextView txtNewEnterprise;
     User user;
+    MyApplication app;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnLogin = (Button) findViewById(R.id.btn_login);
         txtNewUser = (TextView) findViewById(R.id.txt_new_user);
         txtNewEnterprise = (TextView) findViewById(R.id.txt_new_enterprise);
+        app = (MyApplication) getApplication();
 
         btnLogin.setOnClickListener(this);
         txtNewUser.setOnClickListener(this);
@@ -130,11 +133,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
 
             case R.id.txt_new_user:
+                app.setNewEnterprise(false);
                 startActivity(new Intent(LoginActivity.this, NewUserActivity.class));
                 break;
 
             case R.id.txt_new_enterprise:
-                startActivity(new Intent(LoginActivity.this, NewEnterpriseActivity.class));
+                app.setNewEnterprise(true);
+                startActivity(new Intent(LoginActivity.this, NewUserActivity.class));
                 break;
         }
     }

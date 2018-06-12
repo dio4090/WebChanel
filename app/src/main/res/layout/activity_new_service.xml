@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewServiceActivity">
+
+    <!-- TABLE LAYOUT USED BECAUSE SCROLL VIEW -->
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="1"
+        android:layout_marginLeft="15sp"
+        android:layout_marginRight="15sp"
+        android:layout_marginTop="15sp"
+        android:layout_marginBottom="15sp" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Serviços da Empresa"
+            android:textSize="25sp"
+            android:gravity="center"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/txt_enterprise_name"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descrição do Serviço"
+            android:textSize="20sp"
+            android:layout_marginTop="30dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edt_new_service_description"
+            android:text="Corte de barba" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Valor"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:id="@+id/edt_new_service_value"
+            android:text="" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Adicionar"
+            android:layout_marginTop="150dp"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/btn_add_service" />
+
+
+    </TableLayout>
+
+</android.support.constraint.ConstraintLayout>

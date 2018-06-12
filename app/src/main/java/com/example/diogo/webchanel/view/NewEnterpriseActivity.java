@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.diogo.webchanel.MyApplication;
 import com.example.diogo.webchanel.R;
 import com.example.diogo.webchanel.dao.EnterpriseDAO;
 import com.example.diogo.webchanel.model.Enterprise;
@@ -23,6 +24,7 @@ public class NewEnterpriseActivity extends AppCompatActivity implements View.OnC
     Enterprise enterprise;
     ArrayList<Enterprise> enterpriseList;
     EnterpriseDAO enterpriseDAO;
+    MyApplication app;
 
     EditText edtNewEnterpriseName;
     EditText edtNewEnterpriseSocialName;
@@ -47,6 +49,7 @@ public class NewEnterpriseActivity extends AppCompatActivity implements View.OnC
     private void initializeVariables() {
         enterprise = new Enterprise();
         enterpriseDAO = new EnterpriseDAO(this);
+        app = (MyApplication) getApplication();
 
         // you need to have a list of data that you want the spinner to display
         List<String> spinnerArray =  new ArrayList<String>();
@@ -107,6 +110,10 @@ public class NewEnterpriseActivity extends AppCompatActivity implements View.OnC
         spiEdtNewEnterpriseType = (Spinner) findViewById(R.id.spi_new_enterprise_type);
         btnAddNewEnterprise = (Button) findViewById(R.id.btn_add_enterprise);
 
+        //Preenchendo valores ja adicionados
+        edtNewEnterpriseAddress.setText(app.getUser().getAddress());
+        edtNewEnterprisePhone.setText(app.getUser().getPhone());
+
         btnAddNewEnterprise.setOnClickListener(this);
     }
 
@@ -124,6 +131,7 @@ public class NewEnterpriseActivity extends AppCompatActivity implements View.OnC
             enterprise.setUf(sItems.getSelectedItem().toString());
             enterprise.setCnpj(edtNewEnterpriseCnpj.getText().toString());
             enterprise.setType(sItemsType.getSelectedItem().toString());
+            enterprise.setUserId(app.getUser().getId());
             enterpriseDAO.insertEnterprise(enterprise);
         } catch (Exception e) {
             System.out.println("Error on createEnterprise(): " + e.getMessage());
@@ -140,6 +148,7 @@ public class NewEnterpriseActivity extends AppCompatActivity implements View.OnC
             System.out.println("ID:"+e.getId());
             System.out.println("NOME:"+e.getName());
             System.out.println("CNPJ:"+e.getCnpj());
+            System.out.println("USER_ID:"+e.getUserId());
         }
     }
 
@@ -149,6 +158,7 @@ public class NewEnterpriseActivity extends AppCompatActivity implements View.OnC
             case R.id.btn_add_enterprise:
                 createEnterprise();
                 showEnterprises();
+
                 startActivity(new Intent(NewEnterpriseActivity.this, LoginActivity.class));
 
         }

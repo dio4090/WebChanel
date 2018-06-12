@@ -14,6 +14,7 @@ public class Enterprise {
     private String type = "";
     private String updatedAt = "";
     private int image; // vai armazenar o identificador do recurso
+    private int userId = 0;
 
 
     //GETTERS AND SETTERS
@@ -118,5 +119,13 @@ public class Enterprise {
 
     public void setImage(int image) {
         this.image = image;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

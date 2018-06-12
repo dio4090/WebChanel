@@ -4,7 +4,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
+import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteDatatypeMismatchException;
+import android.widget.Toast;
 
 import com.example.diogo.webchanel.model.User;
 
@@ -42,10 +45,6 @@ public class UserDAO {
                     + PHONE + " TEXT,"
                     + UPDATED_AT + " DATETIME );";
 
-    public void Reset() {
-        dbHelper.onUpgrade(this.db, 1, 1);
-    }
-
     public UserDAO(Context ctx) {
         Context = ctx;
         dbHelper = new DatabaseHelper(Context, CREATE_USER_TABLE, USER_TABLE);
@@ -61,17 +60,29 @@ public class UserDAO {
     }
 
     //INSERT USER ON SQLITE DB
-    public void insertUser(User u) {
-        openDB();
-        ContentValues cv = new ContentValues();
-        cv.put(NAME, u.getName());
-        cv.put(ADDRESS, u.getAddress());
-        cv.put(EMAIL, u.getEmail());
-        cv.put(PASSWORD, u.getPassword());
-        cv.put(PHONE, u.getPhone());
-        cv.put(UPDATED_AT, u.getUpdatedAt());
-        db.insert(USER_TABLE, null, cv);
-        closeDB();
+    public void insertUser(User u, Context context) {
+        try {
+            openDB();
+            ContentValues cv = new ContentValues();
+            cv.put(NAME, u.getName());
+            cv.put(ADDRESS, u.getAddress());
+            cv.put(EMAIL, u.getEmail());
+            cv.put(PASSWORD, u.getPassword());
+            cv.put(PHONE, u.getPhone());
+            cv.put(UPDATED_AT, u.getUpdatedAt());
+            db.insert(USER_TABLE, null, cv);
+            closeDB();
+        } catch (SQLException mSQLException) {
+            if(mSQLException instanceof SQLiteConstraintException){
+                System.out.println("Error on createUser(): " + mSQLException.getMessage());
+                Toast.makeText(context, "Erro ao realizar o cadastro: " + mSQLException.getMessage(), Toast.LENGTH_LONG).show();
+            }else if(mSQLException instanceof SQLiteDatatypeMismatchException) {
+                System.out.println("Error on createUser(): ");
+                Toast.makeText(context, "Erro ao realizar o cadastro: " + mSQLException.getMessage(), Toast.LENGTH_LONG).show();
+            }else{
+                throw mSQLException;
+            }
+        }
     }
 
     public void updateUser(User u) {
@@ -136,7 +147,7 @@ public class UserDAO {
 
     public User findUserByEmail(String email) {
         openDB();
-        String sql = "SELECT * FROM " +USER_TABLE+ " WHERE " +EMAIL+ " = " + email;
+        String sql = "SELECT * FROM " +USER_TABLE+ " WHERE " +EMAIL+ " = '" + email + "';";
         Cursor cursor = db.rawQuery(sql, null);
 
         if(cursor.moveToFirst()) {
