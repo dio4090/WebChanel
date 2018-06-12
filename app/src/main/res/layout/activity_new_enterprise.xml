@@ -17,17 +17,17 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Novo Cadastro de Empresa"
+            android:text="@string/new_enterprise_registration"
             android:textSize="25sp"
             android:gravity="center"
             android:layout_marginBottom="20dp" />
 
         <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nome da Empresa"
-        android:textSize="20sp"
-        android:layout_marginTop="10dp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/enterprise_name"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp" />
 
         <EditText
             android:layout_width="match_parent"
@@ -38,7 +38,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nome Social"
+            android:text="@string/enterprise_social_name"
             android:textSize="20sp"
             android:layout_marginTop="10dp" />
 
@@ -51,7 +51,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Endereço"
+            android:text="@string/enterprise_address"
             android:textSize="20sp"
             android:layout_marginTop="10dp" />
 
@@ -64,7 +64,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Telefone"
+            android:text="@string/enterprise_phone"
             android:textSize="20sp"
             android:layout_marginTop="10dp"/>
 
@@ -78,7 +78,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CEP"
+            android:text="@string/enterprise_zipcode"
             android:textSize="20sp"
             android:layout_marginTop="10dp" />
 
@@ -91,7 +91,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bairro"
+            android:text="@string/enterprise_neighborhood"
             android:textSize="20sp"
             android:layout_marginTop="10dp" />
 
@@ -104,7 +104,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="UF"
+            android:text="@string/enterprise_state"
             android:textSize="20sp"
             android:layout_marginTop="10dp" />
 
@@ -116,7 +116,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cidade"
+            android:text="@string/enterprise_city"
             android:textSize="20sp"
             android:layout_marginTop="10dp" />
 
@@ -129,7 +129,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CNPJ"
+            android:text="@string/enterprise_identification"
             android:textSize="20sp"
             android:layout_marginTop="10dp" />
 
@@ -142,7 +142,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tipo de Empresa"
+            android:text="@string/enterprise_type_company"
             android:layout_marginTop="20dp"
             android:textSize="20sp" />
 
@@ -154,7 +154,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cadastrar"
+            android:text="@string/enterprise_register"
             android:layout_marginTop="50dp"
             android:layout_marginBottom="20dp"
             android:id="@+id/btn_add_enterprise" />

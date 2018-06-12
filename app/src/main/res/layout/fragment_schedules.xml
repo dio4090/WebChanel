@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15sp"
         android:layout_marginTop="20dp"
-        android:text="Agende seu Serviço"
+        android:text="@string/schedules_schedule_your_service"
         android:textStyle="bold"
         android:textSize="20sp" />
 

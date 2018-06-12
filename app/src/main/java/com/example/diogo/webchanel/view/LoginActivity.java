@@ -102,7 +102,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //Dialog
         final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Authenticating...");
+        progressDialog.setMessage(LoginActivity.this.getString(R.string.login_authenticating));
         progressDialog.show();
 
         //Wait 3 seconds
@@ -116,7 +116,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void userNotExists(){
-        Toast.makeText(getBaseContext(), "Login ou senha inválidos", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), LoginActivity.this.getString(R.string.login_invalid), Toast.LENGTH_LONG).show();
         btnLogin.setEnabled(true);
     }
 

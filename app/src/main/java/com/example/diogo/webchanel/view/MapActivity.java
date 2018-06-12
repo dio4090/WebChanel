@@ -52,8 +52,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        Toast.makeText(this, "Localizando...", Toast.LENGTH_SHORT).show();
-        Log.d(TAG, "onMapReady: o mapa está pronto! ");
+        Toast.makeText(this, MapActivity.this.getString(R.string.map_finding), Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "OnMapReady: " + MapActivity.this.getString(R.string.map_ready));
         mMap = googleMap;
 
         if (mLocationPermissionsGranted) {
@@ -102,7 +102,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         Intent intent = getIntent();
         searchString = (String) intent.getSerializableExtra("address");
 
-        Log.d(TAG,"ENDEREÇO: " + searchString);
+        Log.d(TAG,MapActivity.this.getString(R.string.map_address) + searchString);
 
         getLocationPermission();
 
@@ -116,11 +116,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             public void run() {
                 try {
                     sleep(8000);
-                    Log.d(TAG,"Inicializando Thread...");
+                    Log.d(TAG, MapActivity.this.getString(R.string.map_initializing_thread));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
-                    Log.d(TAG,"Fim da Thread!");
+                    Log.d(TAG, MapActivity.this.getString(R.string.map_end_of_thread));
                 }
 
             }
@@ -133,7 +133,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     //Método para geolocalização da empresa
     private void geoLocation(){
-        Log.d(TAG, "geoLocation: geolocalizando...");
+        Log.d(TAG, "geoLocation: " + MapActivity.this.getString(R.string.map_geolocating));
 
         Geocoder geocoder = new Geocoder(MapActivity.this);
         List<Address> list = new ArrayList<>();
@@ -146,7 +146,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         if(list.size() > 0){
             Address address = list  .get(0);
 
-            Log.d(TAG, "geoLocate: localização encontrada: " + address.toString());
+            Log.d(TAG, "geoLocate: " + MapActivity.this.getString(R.string.map_found_location) + address.toString());
             //Toast.makeText(this, address.toString(), Toast.LENGTH_SHORT).show();
 
             moveCamera(new LatLng(address.getLatitude(), address.getLongitude()),DEFAULT_ZOOM,
@@ -157,7 +157,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     //Método para localização atual dos dispositivos
     private void getDeviceLocation(){
-        Log.d(TAG, "getDeviceLocation: obtendo a localização atual dos dispositivos");
+        Log.d(TAG, "getDeviceLocation: " + MapActivity.this.getString(R.string.map_get_device_location));
 
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -170,14 +170,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     public void onComplete(@NonNull Task task) {
                         if(task.isSuccessful()) {
 
-                            Log.d(TAG, "onComplete: localização encontrada!");
+                            Log.d(TAG, "onComplete: " + MapActivity.this.getString(R.string.map_found_location2));
                             Location currentLocation = (Location) task.getResult();
 
                             moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()),
-                                    DEFAULT_ZOOM,"Minha localização");
+                                    DEFAULT_ZOOM, MapActivity.this.getString(R.string.map_my_location));
                         }else{
-                            Log.d(TAG, "onComplete: a localização atual é nula!");
-                            Toast.makeText(MapActivity.this, "incapaz de obter a localização atual",
+                            Log.d(TAG, "onComplete: " + MapActivity.this.getString(R.string.map_null_location));
+                            Toast.makeText(MapActivity.this, MapActivity.this.getString(R.string.map_unable_location),
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -189,10 +189,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     private void moveCamera(LatLng latLng, float zoom, String title){
-        Log.d(TAG, "moveCamera: movendo a camara para: lat: " + latLng.latitude + ", lng: " + latLng.longitude );
+        Log.d(TAG, "moveCamera: " + MapActivity.this.getString(R.string.map_null_location) + "lat: " + latLng.latitude + ", lng: " + latLng.longitude );
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
 
-        if(!title.equals("Minha localização")) {
+        if(!title.equals(MapActivity.this.getString(R.string.map_my_location))) {
             //Adicionando marcação no mapa
             MarkerOptions options = new MarkerOptions()
                     .position(latLng)
@@ -205,14 +205,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     private void initMap(){
-        Log.d(TAG, "initMap: inicializando o mapa!");
+        Log.d(TAG, "initMap: " + MapActivity.this.getString(R.string.map_starting_map));
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
 
         mapFragment.getMapAsync(MapActivity.this);
     }
 
     private void getLocationPermission(){
-        Log.d(TAG, "getLocationPermission: obtendo permissões de localização.");
+        Log.d(TAG, "getLocationPermission: " + MapActivity.this.getString(R.string.map_permissions));
         String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_COARSE_LOCATION};
 
@@ -236,7 +236,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        Log.d(TAG, "onRequestPermissionsResult: chamado.");
+        Log.d(TAG, "onRequestPermissionsResult: " + MapActivity.this.getString(R.string.map_called));
         mLocationPermissionsGranted = false;
 
         switch(requestCode){
@@ -245,11 +245,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     for(int i = 0; i < grantResults.length; i++){
                         if(grantResults[i] != PackageManager.PERMISSION_GRANTED){
                             mLocationPermissionsGranted = false;
-                            Log.d(TAG, "onRequestPermissionsResult: permissão falhou!");
+                            Log.d(TAG, "onRequestPermissionsResult: " + MapActivity.this.getString(R.string.map_permission_fail));
                             return;
                         }
                     }
-                    Log.d(TAG, "onRequestPermissionsResult: permissão concedida!");
+                    Log.d(TAG, "onRequestPermissionsResult: " + MapActivity.this.getString(R.string.map_permission_success));
                     mLocationPermissionsGranted = true;
                     //initialize our map
                     initMap();

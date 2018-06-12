@@ -19,7 +19,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nome da barbearia"
+            android:text="@string/enterprise_name"
             android:id="@+id/name"
             android:layout_marginTop="10dp"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.SearchResult.Title" />
@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-            android:text="Endereço"
+            android:text="@string/enterprise_address"
             android:id="@+id/address" />
     </LinearLayout>
 

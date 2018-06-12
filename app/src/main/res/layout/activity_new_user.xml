@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Novo Cadastro"
+            android:text="@string/new_user_registration"
             android:textSize="30sp"
             android:layout_marginLeft="60dp"
             android:layout_marginBottom="20dp" />
@@ -25,7 +25,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nome Completo"
+            android:text="@string/user_complete_name"
             android:textSize="20sp"
             android:layout_marginTop="10dp" />
 
@@ -37,7 +37,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Endereço"
+            android:text="@string/user_address"
             android:textSize="20sp"
             android:layout_marginTop="10dp" />
 
@@ -49,7 +49,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Telefone"
+            android:text="@string/user_phone"
             android:textSize="20sp"
             android:layout_marginTop="10dp"/>
 
@@ -62,7 +62,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Email"
+            android:text="@string/user_email"
             android:textSize="20sp"
             android:layout_marginTop="10dp" />
 
@@ -74,7 +74,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Senha"
+            android:text="@string/user_password"
             android:layout_marginTop="10dp"
             android:textSize="20sp" />
 
@@ -87,7 +87,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cadastrar"
+            android:text="@string/user_register"
             android:layout_marginTop="50dp"
             android:layout_marginBottom="20dp"
             android:id="@+id/btn_add_user" />

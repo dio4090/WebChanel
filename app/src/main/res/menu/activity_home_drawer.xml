@@ -8,19 +8,19 @@
         <item
             android:id="@+id/provider"
             android:icon="@drawable/baseline_room_black_24dp"
-            android:title="Encontre nossa sede" />
+            android:title="@string/drawer_find_us" />
         <item
             android:id="@+id/nav_video"
             android:icon="@drawable/ic_ondemand_video_black_24dp"
-            android:title="Conheça nosso App" />
+            android:title="@string/drawer_get_to_know_our_app" />
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:title="@string/drawer_gallery" />
 
     </group>
 
-    <item android:title="Redes Sociais">
+    <item android:title="@string/drawer_social_network">
         <menu>
             <item
                 android:id="@+id/nav_share"
@@ -33,16 +33,16 @@
         </menu>
     </item>
 
-    <item android:title="Sistema App">
+    <item android:title="@string/drawer_app_system">
         <menu>
             <item
                 android:id="@+id/nav_disconect"
                 android:icon="@drawable/ic_highlight_off_black_24dp"
-                android:title="Disconect" />
+                android:title="@string/drawer_disconnect" />
             <item
                 android:id="@+id/nav_exit"
                 android:icon="@drawable/ic_exit_to_app_black_24dp"
-                android:title="Sair" />
+                android:title="@string/drawer_logout" />
         </menu>
     </item>
 </menu>

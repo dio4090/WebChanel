@@ -20,7 +20,7 @@
         android:singleLine="true"
         android:inputType="textEmailAddress"
         android:background="#ffffff"
-        android:hint="Login"
+        android:hint="@string/username"
         android:text="teste@gmail.com"
         android:drawableLeft="@drawable/ic_username"/>
 
@@ -37,7 +37,7 @@
         android:background="#ffffff"
         android:focusableInTouchMode="true"
         android:singleLine="true"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword"
         android:text="teste123"
         android:drawableLeft="@drawable/ic_passoword"/>
@@ -51,7 +51,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="125dp"
-        android:text="Entrar"
+        android:text="@string/login"
         android:textSize="16dp"
         android:background="#03aed9"
         android:textColor="#ffffff"
@@ -65,7 +65,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="84dp"
-        android:text="Não tem cadastro ainda?"
+        android:text="@string/not_registered_yet"
         android:textColor="#ffffff"
         android:textSize="18sp" />
 
@@ -76,7 +76,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="51dp"
-        android:text="Seja um associado!"
+        android:text="@string/business_partner"
         android:textColor="#ffffff"
         android:textSize="18sp" />
 

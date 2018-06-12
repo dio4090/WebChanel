@@ -31,7 +31,7 @@ public class VideoActivity extends YouTubeBaseActivity implements YouTubePlayer.
             errorReason.getErrorDialog(this, RECOVERY_DIALOG_REQUEST).show();
         } else {
             String errorMessage = String.format(
-            "There was an error initializing the YouTubePlayer (%1$s)",
+             "" + VideoActivity.this.getString(R.string.youtube_error),
              errorReason.toString());
             Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
         }
